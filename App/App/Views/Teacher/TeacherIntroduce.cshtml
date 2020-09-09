@@ -1,0 +1,20 @@
+﻿@model TeacherViewModel
+
+<h3>RubySound의 멋진 선생님들을 소개합니다!</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Class</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Teacher teacher in Model.Teachers)
+        {
+            <tr>
+                <td>@teacher.Name</td>
+                <td>@teacher.Ins</td>
+            </tr>
+        }
+    </tbody>
+</table>
