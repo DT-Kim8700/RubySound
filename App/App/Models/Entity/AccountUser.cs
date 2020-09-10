@@ -16,7 +16,11 @@ namespace App.Models.Account
 
         // Email은 IdentityUser의 Email 필드를 사용
 
-        // Name은 IdentityUser의 UserName 필드를 사용
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Address { get; set; }
 
         [Required]
         public string Gender { get; set; }

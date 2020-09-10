@@ -57,6 +57,6 @@ namespace App.Data
 }
 
 /*
-add-migration RubySoundV1
+add-migration RubySoundV2
 update-database
  */

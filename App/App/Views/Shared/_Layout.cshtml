@@ -27,15 +27,25 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="ScheduleLookup">스케쥴 확인</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">로그인</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Join">회원가입</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)     // 인증이 되었을 때만(로그인 성공시) 보인다.
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="ScheduleLookup">스케쥴 확인</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">로그아웃</a>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">로그인</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Join">회원가입</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -47,7 +57,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-center">
+    @*<footer class="border-top footer text-center">
         <div class="row">
             <div class="container text-center">
                 &copy; 2020 - App - <a asp-area="" asp-controller="Home" asp-action="Index">RubySound</a>
@@ -57,6 +67,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    @RenderSection("Scripts", required: false)*@
 </body>
 </html>
