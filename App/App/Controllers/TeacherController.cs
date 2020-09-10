@@ -29,5 +29,13 @@ namespace App.Controllers
 
             return View(viewModel);
         }
+
+        
+        // 선생님 관리
+        public IActionResult TeacherManagement()
+        {
+            
+            return View();
+        }
     }
 }

@@ -47,6 +47,8 @@ namespace App.Models
         [Required, StringLength(50), Column(TypeName = "nvarchar(50)")]
         public Instrument Ins { get; set; }
 
+        [Required, Column(TypeName = "int")]
+        public int TeacherId { get; set; }
         public Teacher Teacher { get; set; }
 
         

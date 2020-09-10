@@ -25,7 +25,7 @@ namespace App.Data
 
         public async Task SeedDatabase()
         {
-            if (!context.Teachers.Any())    // Teachers 테이블에 데이터가 없을 때 초기 값 설정. 있다면 반영되지 않는다.
+            if (!context.Teachers.Any())    // Teachers 테이블에 데이터가 없을 때 초기 값 설정. 테이블에 데이터가 있다면 반영되지 않는다.
             {
                 // DB 초기 데이터 설정.
                 List<Teacher> teachers = new List<Teacher>()
@@ -46,11 +46,35 @@ namespace App.Data
 
             }
 
-            // 계정에 운영자 권한 부여
-            //var adminAccount = await userManager.FindByNameAsync("Manager");                   // AspNetUsers 안에 해당 UserName의 데이터가 있는지 찾는다.
-            //var adminRole = new IdentityRole("Admin");                                      // 만들어낼 Role의 이름을 넣는다.
-            //await roleManager.CreateAsync(adminRole);                                       // 만들어낸 Role을 Role 테이블에(AspNetRoles) 추가한다.
-            //await userManager.AddToRoleAsync(adminAccount, adminRole.Name);                 // 첫번째 인자의 데이터의 계정, 두번째 인자의 권한이름을 AspNetUesrRoles 테이블에 추가한다.
+            if (!context.Students.Any())    // Students 테이블에 데이터가 없을 때 초기 값 설정. 테이블에 데이터가 있다면 반영되지 않는다.
+            {
+                // DB 초기 데이터 설정.
+                List<Student> students = new List<Student>()
+                {
+                    new Student() {Name = "김용범", Birthday = "1111-11-11", Gender = "남", Email ="RubySound1@naver.com",
+                        PhoneNumber = "01011112222", Address = "두암동", Ins = Student.Instrument.Flute},
+                    new Student() {Name = "홍은채", Birthday = "1111-11-11", Gender = "여", Email ="RubySound2@naver.com",
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Violin},
+                    new Student() {Name = "조은진", Birthday = "1111-11-11", Gender = "여", Email ="RubySound2@naver.com",
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Viola},
+                    new Student() {Name = "이평영", Birthday = "1111-11-11", Gender = "남", Email ="RubySound3@naver.com",
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Violin},
+                    new Student() {Name = "박지원", Birthday = "1111-11-11", Gender = "여", Email ="RubySound4@naver.com",
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Piano}
+                };
+
+                await context.AddRangeAsync(students);
+
+                await context.SaveChangesAsync();
+
+            }
+
+
+            // 계정에 운영자 권한 부여 : master@naver.com 에 manager 역할을 부여
+            var adminAccount = await userManager.FindByNameAsync("master@naver.com");             
+            var adminRole = new IdentityRole("manager");                                   
+            await roleManager.CreateAsync(adminRole);                                     
+            await userManager.AddToRoleAsync(adminAccount, adminRole.Name);          
 
         }
     }
