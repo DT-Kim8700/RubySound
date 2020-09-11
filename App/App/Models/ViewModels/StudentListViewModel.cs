@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace App.Models.ViewModels
 {
-    public class StudentViewModel
+    public class StudentListViewModel
     {
         public Student Student { get; set; }
 
-        public string TeacherName { get; set; }
+        public Teacher Teacher { get; set; }
+
     }
 }

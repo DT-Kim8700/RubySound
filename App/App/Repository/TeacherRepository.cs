@@ -1,5 +1,6 @@
 ﻿using App.Data;
 using App.Models;
+using App.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,16 @@ namespace App.Repository
         }
 
         // 선생님 전체 조회
-        public IEnumerable<Teacher> GetAllTeachers()    // IEnumerable : List보다 데이터를 읽어올때 더 효율적이다.
+        public TeacherListViewModel GetAllTeachers()    // IEnumerable : List보다 데이터를 읽어올때 더 효율적이다.
         {
-            return context.Teachers.ToList();
+            var teachers = context.Teachers.ToList();
+
+            var teacherViewModel = new TeacherListViewModel()
+            {
+                Teachers = teachers
+            };
+
+            return teacherViewModel;
         }
 
         // 선생님 프로필 조회

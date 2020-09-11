@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace App.Models.ViewModels
 {
-    public class TeacherViewModel
+    public class TeacherListViewModel
     {
         public IEnumerable<Teacher> Teachers { get; set; }
     }

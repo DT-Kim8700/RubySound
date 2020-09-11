@@ -20,12 +20,7 @@ namespace App.Controllers
         // 선생님 소개
         public IActionResult TeacherIntroduce()
         {
-            var teachers = teacherRepository.GetAllTeachers();
-
-            var viewModel = new TeacherViewModel()
-            {
-                Teachers = teachers
-            };
+            var viewModel = teacherRepository.GetAllTeachers();
 
             return View(viewModel);
         }

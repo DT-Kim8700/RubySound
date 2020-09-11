@@ -1,4 +1,4 @@
-﻿@model List<StudentViewModel>
+﻿@model List<StudentListViewModel>
 
 @{
     ViewData["Title"] = "학생 관리";
@@ -16,15 +16,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (StudentViewModel studentViewModel in Model)
+        @foreach (StudentListViewModel m in Model)
         {
             <tr>
-                <td class="align-middle text-center">@studentViewModel.Student.Name</td>
-                <td class="align-middle text-center">@studentViewModel.Student.PhoneNumber</td>
-                <td class="align-middle text-center">@studentViewModel.Student.Ins</td>
-                <td class="align-middle text-center">@studentViewModel.TeacherName</td>
+                <td class="align-middle text-center">@m.Student.Name</td>
+                <td class="align-middle text-center">@m.Student.PhoneNumber</td>
+                <td class="align-middle text-center">@m.Student.Ins</td>
+                <td class="align-middle text-center">@m.Teacher.Name</td>
                 <td class="align-middle text-center">
-                    <a class="btn btn-info" asp-area="" asp-controller="Student" asp-action="Delete">Delete</a>
+                    <a class="btn btn-info" asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@m.Student.StudentId">Delete</a>
                 </td>
             </tr>
         }

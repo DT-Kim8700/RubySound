@@ -52,15 +52,21 @@ namespace App.Data
                 List<Student> students = new List<Student>()
                 {
                     new Student() {Name = "김용범", Birthday = "1111-11-11", Gender = "남", Email ="RubySound1@naver.com",
-                        PhoneNumber = "01011112222", Address = "두암동", Ins = Student.Instrument.Flute},
+                        PhoneNumber = "01011112222", Address = "두암동", Ins = Student.Instrument.Flute, TeacherId = 1005},
                     new Student() {Name = "홍은채", Birthday = "1111-11-11", Gender = "여", Email ="RubySound2@naver.com",
-                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Violin},
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Violin, TeacherId = 1000},
                     new Student() {Name = "조은진", Birthday = "1111-11-11", Gender = "여", Email ="RubySound2@naver.com",
-                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Viola},
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Viola, TeacherId = 1000},
                     new Student() {Name = "이평영", Birthday = "1111-11-11", Gender = "남", Email ="RubySound3@naver.com",
-                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Violin},
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Violin, TeacherId = 1000},
                     new Student() {Name = "박지원", Birthday = "1111-11-11", Gender = "여", Email ="RubySound4@naver.com",
-                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Piano}
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Piano, TeacherId = 1010},
+                    new Student() {Name = "장혜주", Birthday = "1111-11-11", Gender = "여", Email ="RubySound5@naver.com",
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Guitar, TeacherId = 1015},
+                    new Student() {Name = "박지혁", Birthday = "1111-11-11", Gender = "남", Email ="RubySound6@naver.com",
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Piano, TeacherId = 1010},
+                    new Student() {Name = "김다혜", Birthday = "1111-11-11", Gender = "여", Email ="RubySound7@naver.com",
+                        PhoneNumber = "01011112222", Address = "일곡동", Ins = Student.Instrument.Piano, TeacherId = 1010}
                 };
 
                 await context.AddRangeAsync(students);

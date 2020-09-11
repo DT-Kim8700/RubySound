@@ -1,4 +1,5 @@
-﻿using App.Models.ViewModels;
+﻿using App.Models;
+using App.Models.ViewModels;
 using App.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,6 +25,21 @@ namespace App.Controllers
             var viewModel = studentRepository.GetAllStudents();
 
             return View(viewModel);
+        }
+
+        // 학생 삭제
+        public IActionResult DeleteStudent(int? id)
+        {
+
+            if (id == null)
+            {
+                return RedirectToAction("StudentManagement");
+            }
+
+            studentRepository.Delete(id);
+            studentRepository.Save();
+
+            return RedirectToAction("StudentManagement");
         }
     }
 }
