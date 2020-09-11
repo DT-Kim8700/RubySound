@@ -6,6 +6,9 @@ namespace App.Repository
 {
     public interface ITeacherRepository
     {
+        List<Student> ChargeStudents(int? teacherId);
+        void Delete(int? TeacherId);
         TeacherListViewModel GetAllTeachers();
+        void Save();
     }
 }

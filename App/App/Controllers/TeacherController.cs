@@ -1,4 +1,5 @@
-﻿using App.Models.ViewModels;
+﻿using App.Models;
+using App.Models.ViewModels;
 using App.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,8 +30,32 @@ namespace App.Controllers
         // 선생님 관리
         public IActionResult TeacherManagement()
         {
-            
-            return View();
+            var viewModel = teacherRepository.GetAllTeachers();
+
+            return View(viewModel);
+        }
+
+        // 선생님 삭제
+        public IActionResult DeleteTeacher(int? id)
+        {
+
+            if (id == null)
+            {
+                return RedirectToAction("TeacherManagement");
+            }
+
+            // 담당 학생이 한 명도 없을 시 삭제가능
+            List<Student> students = teacherRepository.ChargeStudents(id);
+
+            if (students.Count == 0)
+            {
+                teacherRepository.Delete(id);
+                teacherRepository.Save();
+
+                return RedirectToAction("TeacherManagement");
+            }
+
+            return RedirectToAction("index", "Home");
         }
     }
 }

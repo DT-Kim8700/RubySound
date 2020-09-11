@@ -1,4 +1,70 @@
-﻿@{
+﻿@model List<CommunityListViewModel>
+
+@{
     ViewData["Title"] = "커뮤니티";
 }
-<h1>@ViewData["Title"] 페이지</h1>
+
+<div class="text-center">
+    <h2>커뮤니티 게시판</h2>
+    <h3>회원분들과 자유롭게 이야기를 나누어보아요~</h3>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="align-middle text-center">번호</th>
+                <th class="align-middle text-center">제목</th>
+                <th class="align-middle text-center">글쓴이</th>
+                <th class="align-middle text-center">작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CommunityListViewModel c in Model)
+            {
+                <tr>
+                    <td class="align-middle text-center">@c.Community.CommunityId</td>
+                    <td class="align-middle text-center">@c.Community.Title</td>
+                    <td class="align-middle text-center">@c.AccountUser.Name</td>
+                    <td class="align-middle text-center">@c.Community.EnrollTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center">
+        <ul class="pagination">
+
+            @if (Model[0].Page != 1)
+            {
+                <li class="page-item">
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Community" asp-route-id="@(Model[0].Page - 1)">이전</a>
+                </li>
+            }
+
+
+            @if (Model[0].Page * 100 >= CommunityListViewModel.Count * 10)
+            {
+                @for (int i = Model[0].Page * 10 - 9; i <= CommunityListViewModel.Count; i++)
+                {
+                    <li class="page-item">
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Community" asp-route-id="@i">@i</a>
+                    </li>
+                }
+            }
+            else
+            {
+                @for (int i = Model[0].Page * 10 - 9; i <= Model[0].Page * 10; i++)
+                {
+                    <li class="page-item">
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Community" asp-route-id="@i">@i</a>
+                    </li>
+                }
+
+                <li class="page-item">
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Community"
+                       asp-route-id="@(Model[0].Page * 10 + 1)">다음</a>
+                </li>
+            }
+
+
+        </ul>
+    </div>
+</div>

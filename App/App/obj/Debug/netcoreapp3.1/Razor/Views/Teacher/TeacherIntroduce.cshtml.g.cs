@@ -33,8 +33,15 @@ using App.Models.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\hiper\Desktop\C#\RubySound\App\App\Views\_ViewImports.cshtml"
+using App.Models.Entity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"edf2c4fdf2e14942c4a64e6670217f2e44e8d5e7", @"/Views/Teacher/TeacherIntroduce.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0d40b110bf2828c9f8a4b36b62e78f0864869bfb", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5dbe54fb5424fb3930f43d51cd880a391d5e2eba", @"/Views/_ViewImports.cshtml")]
     public class Views_Teacher_TeacherIntroduce : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<TeacherListViewModel>
     {
         #pragma warning disable 1998

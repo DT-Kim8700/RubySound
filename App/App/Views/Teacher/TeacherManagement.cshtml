@@ -1,7 +1,35 @@
-﻿
+﻿@model TeacherListViewModel
 
 @{
     ViewData["Title"] = "선생님 관리";
 }
 
-<h1>@ViewData["Title"] 페이지</h1>
+<h2>선생님 목록</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="align-middle text-center">이름</th>
+            <th class="align-middle text-center">Email</th>
+            <th class="align-middle text-center">핸드폰 번호</th>
+            <th class="align-middle text-center">주소</th>
+            <th class="align-middle text-center">담당 악기</th>
+            <th class="align-middle text-center"></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Teacher t in Model.Teachers)
+        {
+        <tr>
+            <td class="align-middle text-center">@t.Name</td>
+            <td class="align-middle text-center">@t.Email</td>
+            <td class="align-middle text-center">@t.PhoneNumber</td>
+            <td class="align-middle text-center">@t.Address</td>
+            <td class="align-middle text-center">@t.Ins</td>
+            <td class="align-middle text-center">
+                <a class="btn btn-info" asp-controller="Teacher" asp-action="DeleteTeacher" asp-route-id="@t.TeacherId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

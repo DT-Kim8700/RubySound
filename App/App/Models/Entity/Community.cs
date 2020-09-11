@@ -21,6 +21,9 @@ namespace App.Models.Entity
         [Required]
         public DateTime EnrollTime { get; set; }
 
+        [Required]
+        public string Id { get; set; }
+
         public virtual AccountUser AccountUser { get; set; }
     }
 }

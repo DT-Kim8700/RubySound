@@ -28,7 +28,7 @@ namespace App.Models.Account
 
     public partial class AccountUser    // fk key partial
     {
-        [ForeignKey("AccountUserId")]
+        [ForeignKey("Id")]
         public virtual ICollection<Community> Communitys { get; set; }
     }
 }

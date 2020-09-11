@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace App.Migrations
 {
-    public partial class RubySoundV1 : Migration
+    public partial class RubySoundV6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,9 +18,7 @@ namespace App.Migrations
 
             migrationBuilder.CreateSequence<int>(
                 name: "CommunityIdSequence",
-                schema: "shared",
-                startValue: 1000L,
-                incrementBy: 5);
+                schema: "shared");
 
             migrationBuilder.CreateSequence<int>(
                 name: "ScheduleIdSequence",
@@ -74,6 +72,8 @@ namespace App.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     AccountUserId = table.Column<string>(nullable: true, defaultValueSql: "NEXT VALUE FOR shared.AccountUserIdSequence"),
+                    Name = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: false),
                     Gender = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -213,7 +213,7 @@ namespace App.Migrations
                     Title = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: false),
                     EnrollTime = table.Column<DateTime>(nullable: false),
-                    AccountUserId = table.Column<string>(nullable: true)
+                    AccountUserId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -223,7 +223,7 @@ namespace App.Migrations
                         column: x => x.AccountUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -238,7 +238,7 @@ namespace App.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Ins = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    TeacherId = table.Column<int>(nullable: true)
+                    TeacherId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -248,7 +248,7 @@ namespace App.Migrations
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
                         principalColumn: "TeacherId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -257,7 +257,7 @@ namespace App.Migrations
                 {
                     ScheduleId = table.Column<int>(nullable: false, defaultValueSql: "NEXT VALUE FOR shared.ScheduleIdSequence"),
                     ScheduleTime = table.Column<DateTime>(nullable: false),
-                    StudentId = table.Column<int>(nullable: true)
+                    StudentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -267,7 +267,7 @@ namespace App.Migrations
                         column: x => x.StudentId,
                         principalTable: "Students",
                         principalColumn: "StudentId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

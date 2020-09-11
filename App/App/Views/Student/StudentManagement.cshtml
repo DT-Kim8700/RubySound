@@ -9,6 +9,7 @@
     <thead>
         <tr>
             <th class="align-middle text-center">이름</th>
+            <th class="align-middle text-center">Email</th>
             <th class="align-middle text-center">핸드폰 번호</th>
             <th class="align-middle text-center">수강 악기</th>
             <th class="align-middle text-center">담당 선생님</th>
@@ -18,15 +19,16 @@
     <tbody>
         @foreach (StudentListViewModel m in Model)
         {
-            <tr>
-                <td class="align-middle text-center">@m.Student.Name</td>
-                <td class="align-middle text-center">@m.Student.PhoneNumber</td>
-                <td class="align-middle text-center">@m.Student.Ins</td>
-                <td class="align-middle text-center">@m.Teacher.Name</td>
-                <td class="align-middle text-center">
-                    <a class="btn btn-info" asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@m.Student.StudentId">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td class="align-middle text-center">@m.Student.Name</td>
+            <td class="align-middle text-center">@m.Student.Email</td>
+            <td class="align-middle text-center">@m.Student.PhoneNumber</td>
+            <td class="align-middle text-center">@m.Student.Ins</td>
+            <td class="align-middle text-center">@m.Teacher.Name</td>
+            <td class="align-middle text-center">
+                <a class="btn btn-info" asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@m.Student.StudentId">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

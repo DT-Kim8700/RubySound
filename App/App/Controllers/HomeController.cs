@@ -10,6 +10,7 @@ using App.Models.ViewModels;
 using App.Models.Account;
 using Microsoft.AspNetCore.Identity;
 using App.Repository;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace App.Controllers
 {
@@ -26,21 +27,20 @@ namespace App.Controllers
             this.signInManager = signInManager;
         }
 
-
+        // 홈페이지 첫 화면
         public IActionResult Index()
         {
             return View();
         }
 
-        
 
-        // 학원 소개
+        // 학원 소개 페이지
         public IActionResult Introduce()
         {
             return View();
         }
 
-        // 로그인
+        // 로그인 페이지
         public IActionResult Login()
         {
             return View();
@@ -52,10 +52,12 @@ namespace App.Controllers
             return View();
         }
 
-        // 커뮤니티
-        public IActionResult Community()
+        // 커뮤니티 페이지
+        public IActionResult Community(int id = 1)
         {
-            return View();
+            var viewModel = homeRepository.GetAllCommunitis(id);
+
+            return View(viewModel);
         }
 
 
@@ -89,6 +91,7 @@ namespace App.Controllers
         }
 
 
+        // 로그인
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)

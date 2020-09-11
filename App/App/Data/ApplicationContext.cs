@@ -61,13 +61,13 @@ namespace App.Data
                     .IncrementsBy(5);
 
             builder.Entity<AccountUser>()
-                    .Property(a => a.AccountUserId)
+                    .Property(a => a.Id)
                     .HasDefaultValueSql("NEXT VALUE FOR shared.AccountUserIdSequence");
 
             // Community
             builder.HasSequence<int>("CommunityIdSequence", schema: "shared")
-                    .StartsAt(1000)
-                    .IncrementsBy(5);
+                    .StartsAt(1)
+                    .IncrementsBy(1);
 
             builder.Entity<Community>()
                     .Property(c => c.CommunityId)

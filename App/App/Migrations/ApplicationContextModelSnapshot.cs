@@ -18,7 +18,7 @@ namespace App.Migrations
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("Relational:Sequence:shared.AccountUserIdSequence", "'AccountUserIdSequence', 'shared', '1000', '5', '', '', 'Int32', 'False'")
-                .HasAnnotation("Relational:Sequence:shared.CommunityIdSequence", "'CommunityIdSequence', 'shared', '1000', '5', '', '', 'Int32', 'False'")
+                .HasAnnotation("Relational:Sequence:shared.CommunityIdSequence", "'CommunityIdSequence', 'shared', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:shared.ScheduleIdSequence", "'ScheduleIdSequence', 'shared', '1000', '5', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:shared.StudentIdSequence", "'StudentIdSequence', 'shared', '1000', '5', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:shared.TeacherIdSequence", "'TeacherIdSequence', 'shared', '1000', '5', '', '', 'Int32', 'False'")
@@ -113,9 +113,6 @@ namespace App.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("NEXT VALUE FOR shared.CommunityIdSequence");
 
-                    b.Property<string>("AccountUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -123,13 +120,17 @@ namespace App.Migrations
                     b.Property<DateTime>("EnrollTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CommunityId");
 
-                    b.HasIndex("AccountUserId");
+                    b.HasIndex("Id");
 
                     b.ToTable("Communitys");
                 });
@@ -388,7 +389,9 @@ namespace App.Migrations
                 {
                     b.HasOne("App.Models.Account.AccountUser", "AccountUser")
                         .WithMany("Communitys")
-                        .HasForeignKey("AccountUserId");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("App.Models.Schedule", b =>
