@@ -7,5 +7,6 @@ namespace App.Repository
     public interface IHomeRepository
     {
         IEnumerable<CommunityListViewModel> GetAllCommunitis(int num);
+        CommunityListViewModel GetCommunity(int CommunityId);
     }
 }

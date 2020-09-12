@@ -33,7 +33,10 @@ namespace App.Controllers
             var viewModel = teacherRepository.GetAllTeachers();
 
             return View(viewModel);
+
         }
+
+        
 
         // 선생님 삭제
         public IActionResult DeleteTeacher(int? id)

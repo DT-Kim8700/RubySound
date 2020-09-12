@@ -1,0 +1,10 @@
+﻿@model CommunityListViewModel
+
+@{
+    ViewData["Title"] = "글 본문";
+}
+
+<h1>@Model.Community.Title</h1>
+<h2>@Model.AccountUser.Name</h2>
+<h3>@Model.Community.EnrollTime.ToShortDateString()</h3>
+<pre>@Model.Community.Description</pre>

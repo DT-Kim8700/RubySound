@@ -40,58 +40,13 @@ namespace App.Controllers
             return View();
         }
 
+
         // 로그인 페이지
         public IActionResult Login()
         {
             return View();
         }
 
-        // 계정 가입 페이지
-        public IActionResult Join()
-        {
-            return View();
-        }
-
-        // 커뮤니티 페이지
-        public IActionResult Community(int id = 1)
-        {
-            var viewModel = homeRepository.GetAllCommunitis(id);
-
-            return View(viewModel);
-        }
-
-
-        // 계정 가입
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Join(JoinViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new AccountUser
-                {
-                    Email = model.Email,
-                    UserName = model.Email,     // Email로 로그인시키기 위해 UserName에 Email값을 넣고 Name 컬럼으로 이름값을 따로 저장
-                    Name = model.Name,
-                    Gender = model.Gender,
-                    Address = model.Address,
-                    PhoneNumber = model.PhoneNumber
-                };
-                var result = await userManager.CreateAsync(user, model.Password);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Login");       // 회원 가입 성공시 로그인 페이지로 이동
-                }
-
-                ModelState.AddModelError("", "회원가입 실패");
-            }
-
-            return View(model);     // 회원 가입 실패시
-        }
-
-
-        // 로그인
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -122,6 +77,59 @@ namespace App.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+
+        // 계정 가입 페이지
+        public IActionResult Join()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Join(JoinViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new AccountUser
+                {
+                    Email = model.Email,
+                    UserName = model.Email,     // Email로 로그인시키기 위해 UserName에 Email값을 넣고 Name 컬럼으로 이름값을 따로 저장
+                    Name = model.Name,
+                    Gender = model.Gender,
+                    Address = model.Address,
+                    PhoneNumber = model.PhoneNumber
+                };
+                var result = await userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Login");       // 회원 가입 성공시 로그인 페이지로 이동
+                }
+
+                ModelState.AddModelError("", "회원가입 실패");
+            }
+
+            return View(model);     // 회원 가입 실패시
+        }
+
+
+        // 커뮤니티 페이지
+        public IActionResult Community(int id = 1)
+        {
+            var viewModel = homeRepository.GetAllCommunitis(id);
+
+            return View(viewModel);
+        }
+
+        // 커뮤니티 페이지 - 본문 읽기
+        public IActionResult Description(int id)
+        {
+            var viewModel = homeRepository.GetCommunity(id);
+
+            return View(viewModel);
+        }
+
     }
 }
 

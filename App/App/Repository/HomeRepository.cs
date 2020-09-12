@@ -1,5 +1,6 @@
 ﻿using App.Data;
 using App.Models.Account;
+using App.Models.Entity;
 using App.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -52,9 +53,28 @@ namespace App.Repository
                 {
                     AccountUser = i.accountUser,
                     Community = i.community,
-                    Page = (num + query.Count() + 99) / 100      // 소속된 페이지
+                    Page = (num + query.Count() + 9) / 10      // 소속된 페이지
                 });
             }
+
+            return viewModel;
+        }
+
+
+        // 글 본문
+        public CommunityListViewModel GetCommunity(int CommunityId)
+        {
+            var query = (from accountUser in context.AccountUsers
+                         join community in context.Communitys
+                         on accountUser.Id equals community.Id
+                         where community.CommunityId == CommunityId
+                         select new { accountUser, community }).FirstOrDefault();
+
+            CommunityListViewModel viewModel = new CommunityListViewModel
+            {
+                Community = query.community,
+                AccountUser = query.accountUser
+            };
 
             return viewModel;
         }

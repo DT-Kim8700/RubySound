@@ -22,9 +22,11 @@
             {
                 <tr>
                     <td class="align-middle text-center">@c.Community.CommunityId</td>
-                    <td class="align-middle text-center">@c.Community.Title</td>
+                    <td class="align-middle text-center">
+                        <a asp-controller="Home" asp-action="Description" asp-route-id="@c.Community.CommunityId">@c.Community.Title</a>
+                    </td>
                     <td class="align-middle text-center">@c.AccountUser.Name</td>
-                    <td class="align-middle text-center">@c.Community.EnrollTime</td>
+                    <td class="align-middle text-center">@c.Community.EnrollTime.ToShortDateString()</td>
                 </tr>
             }
         </tbody>
@@ -32,35 +34,54 @@
     <div class="text-center">
         <ul class="pagination">
 
-            @if (Model[0].Page != 1)
+            @if ((Model[0].Page - 1) / 10 * 10 + 1 != 1)
             {
                 <li class="page-item">
-                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Community" asp-route-id="@(Model[0].Page - 1)">이전</a>
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Community" asp-route-id="@((Model[0].Page - 1) / 10 * 10)">이전</a>
                 </li>
             }
 
 
-            @if (Model[0].Page * 100 >= CommunityListViewModel.Count * 10)
+            @if ((Model[0].Page - 1) / 10 * 10 + 10 >= CommunityListViewModel.Count)
             {
-                @for (int i = Model[0].Page * 10 - 9; i <= CommunityListViewModel.Count; i++)
+                @for (int i = (Model[0].Page - 1) / 10 * 10 + 1; i <= CommunityListViewModel.Count; i++)
                 {
-                    <li class="page-item">
-                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Community" asp-route-id="@i">@i</a>
-                    </li>
+                    if (Model[0].Page == i)
+                    {
+                        <li class="page-item">
+                            <span class="nav-link text-dark bg-info">@i</span>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Community" asp-route-id="@i">@i</a>
+                        </li>
+                    }
                 }
             }
             else
             {
-                @for (int i = Model[0].Page * 10 - 9; i <= Model[0].Page * 10; i++)
+                @for (int i = (Model[0].Page - 1) / 10 * 10 + 1; i < (Model[0].Page - 1) / 10 * 10 + 11; i++)
                 {
-                    <li class="page-item">
-                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Community" asp-route-id="@i">@i</a>
-                    </li>
+                    if (Model[0].Page == i)
+                    {
+                        <li class="page-item">
+                            <span class="nav-link text-dark bg-info">@i</span>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Community" asp-route-id="@i">@i</a>
+                        </li>
+                    }
+
                 }
 
                 <li class="page-item">
                     <a class="nav-link text-dark" asp-controller="Home" asp-action="Community"
-                       asp-route-id="@(Model[0].Page * 10 + 1)">다음</a>
+                       asp-route-id="@((Model[0].Page - 1) / 10 * 10 + 11)">다음</a>
                 </li>
             }
 
