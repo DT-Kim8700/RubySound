@@ -11,6 +11,10 @@ using App.Models.Account;
 using Microsoft.AspNetCore.Identity;
 using App.Repository;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authorization;
+using System.Web.Providers.Entities;
+using System.Security.Claims;
+using App.Models.Entity;
 
 namespace App.Controllers
 {
@@ -128,6 +132,31 @@ namespace App.Controllers
             var viewModel = homeRepository.GetCommunity(id);
 
             return View(viewModel);
+        }
+
+
+        // 커뮤니티 글 작성
+        public IActionResult CreateCommunity()     // id에 email 값이 들어온다.
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateCommunity(CommunityCreateViewModel model)     // id에 email 값이 들어온다.
+        {
+            homeRepository.UploadCommunity(model);
+
+            return RedirectToAction("Community");
+
+        }
+
+        // 커뮤니티 글 삭제
+        public IActionResult DeleteCommunity(int id)
+        {
+            homeRepository.DeleteCommunity(id);
+
+            return RedirectToAction("Community");
         }
 
     }

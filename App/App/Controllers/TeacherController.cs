@@ -27,7 +27,7 @@ namespace App.Controllers
         }
 
         
-        // 선생님 관리
+        // 선생님 리스트 조회 및 관리
         public IActionResult TeacherManagement()
         {
             var viewModel = teacherRepository.GetAllTeachers();

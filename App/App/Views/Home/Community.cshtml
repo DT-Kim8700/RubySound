@@ -7,7 +7,15 @@
 <div class="text-center">
     <h2>커뮤니티 게시판</h2>
     <h3>회원분들과 자유롭게 이야기를 나누어보아요~</h3>
-    <hr />
+    @if (User.Identity.IsAuthenticated)     // 인증이 되었을 때만(로그인 성공시) 보인다.
+    { 
+        <span class="nav-link btn btn-info pull-right">
+            <a class="text-dark" asp-controller="Home" asp-action="CreateCommunity">글쓰기</a>
+        </span>
+    }
+        
+    <br />
+    <br />
     <table class="table">
         <thead>
             <tr>
@@ -81,9 +89,10 @@
 
                 <li class="page-item">
                     <a class="nav-link text-dark" asp-controller="Home" asp-action="Community"
-                       asp-route-id="@((Model[0].Page - 1) / 10 * 10 + 11)">다음</a>
+                        asp-route-id="@((Model[0].Page - 1) / 10 * 10 + 11)">다음</a>
                 </li>
             }
+
 
 
         </ul>

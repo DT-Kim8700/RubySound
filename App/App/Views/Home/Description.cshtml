@@ -8,3 +8,7 @@
 <h2>@Model.AccountUser.Name</h2>
 <h3>@Model.Community.EnrollTime.ToShortDateString()</h3>
 <pre>@Model.Community.Description</pre>
+<div class="form-group row">
+    <a class="text-dark btn btn-info col-md-2 col-md-offset-5"
+       asp-controller="Home" asp-action="DeleteCommunity" asp-route-id="@Model.Community.CommunityId">삭제</a>
+</div>

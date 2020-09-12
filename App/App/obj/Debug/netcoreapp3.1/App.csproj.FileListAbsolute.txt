@@ -155,8 +155,12 @@ C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\
 C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Join.cshtml.g.cs
 C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
 C:\Users\hiper\Desktop\C#\RubySound\App\App\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\App.csproj.CoreCompileInputs.cache
-C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\App.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\TeacherManagement.cshtml.g.cs
 C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\Student\StudentManagement.cshtml.g.cs
 C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Description.cshtml.g.cs
+C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\Home\CreateCommunity.cshtml.g.cs
+C:\Users\hiper\Desktop\C#\RubySound\App\App\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
+C:\Users\hiper\Desktop\C#\RubySound\App\App\bin\Debug\netcoreapp3.1\EntityFramework.dll
+C:\Users\hiper\Desktop\C#\RubySound\App\App\bin\Debug\netcoreapp3.1\System.Web.Providers.dll
+C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\App.csproj.CoreCompileInputs.cache
+C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\App.MvcApplicationPartsAssemblyInfo.cache

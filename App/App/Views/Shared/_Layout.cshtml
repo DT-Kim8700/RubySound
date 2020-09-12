@@ -29,6 +29,10 @@
                     <ul class="nav navbar-nav pull-right">
                         @if (User.Identity.IsAuthenticated)     // 인증이 되었을 때만(로그인 성공시) 보인다.
                         {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark mr-5">@User.Identity.Name.Split('@').FirstOrDefault()님 안녕하세요.</a>
+                            </li>
+
                             @if (User.Identity.IsAuthenticated && User.IsInRole("manager"))       // 로그인에 성공하고 그 계정에 할당된 Role이 Admin일 때
                             {
                                 <li class="nav-item">

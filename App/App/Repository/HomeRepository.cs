@@ -78,5 +78,33 @@ namespace App.Repository
 
             return viewModel;
         }
+
+        // 커뮤니티 글 등록
+        public void UploadCommunity(CommunityCreateViewModel model)
+        {
+            AccountUser accountUser = context.AccountUsers.Where(a => a.Email == model.AccountUser.Email).FirstOrDefault();
+
+            var community = new Community
+            {
+                Title = model.Community.Title,
+                Description = model.Community.Description,
+                EnrollTime = DateTime.Now,
+                Id = accountUser.Id
+            };
+
+            context.Communitys.Add(community);
+
+            context.SaveChanges();
+        }
+
+        // 커뮤니티 글 삭제
+        public void DeleteCommunity(int communityId)
+        {
+            Community community = context.Communitys.Where(c => c.CommunityId == communityId).FirstOrDefault();
+
+            context.Communitys.Remove(community);
+
+            context.SaveChanges();
+        }
     }
 }
