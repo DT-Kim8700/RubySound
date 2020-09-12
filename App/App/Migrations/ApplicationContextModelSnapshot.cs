@@ -27,15 +27,15 @@ namespace App.Migrations
             modelBuilder.Entity("App.Models.Account.AccountUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)")
+                        .HasDefaultValueSql("NEXT VALUE FOR shared.AccountUserIdSequence");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
                     b.Property<string>("AccountUserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValueSql("NEXT VALUE FOR shared.AccountUserIdSequence");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -141,6 +141,11 @@ namespace App.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValueSql("NEXT VALUE FOR shared.ScheduleIdSequence");
+
+                    b.Property<string>("LessonStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("ScheduleTime")
                         .HasColumnType("datetime2");

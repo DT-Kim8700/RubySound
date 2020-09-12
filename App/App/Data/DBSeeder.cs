@@ -96,6 +96,29 @@ namespace App.Data
                 await context.SaveChangesAsync();
             }
 
+            if (!context.Schedules.Any())    // Teachers 테이블에 데이터가 없을 때 초기 값 설정. 테이블에 데이터가 있다면 반영되지 않는다.
+            {
+                // DB 초기 더미 데이터 설정.
+                List<Schedule> schedules = new List<Schedule>()
+                {
+                    new Schedule() {ScheduleTime = new DateTime(2020, 9, 3, 20, 0, 0), StudentId = 1005 },
+                    new Schedule() {ScheduleTime = new DateTime(2020, 9, 10, 19, 0, 0), StudentId = 1005 },
+                    new Schedule() {ScheduleTime = new DateTime(2020, 9, 17, 20, 0, 0), StudentId = 1005 },
+                    new Schedule() {ScheduleTime = new DateTime(2020, 9, 24, 18, 0, 0), StudentId = 1005 },
+
+                    new Schedule() {ScheduleTime = new DateTime(2020, 9, 2, 20, 0, 0), StudentId = 1000 },
+                    new Schedule() {ScheduleTime = new DateTime(2020, 9, 9, 20, 0, 0), StudentId = 1000 },
+                    new Schedule() {ScheduleTime = new DateTime(2020, 9, 17, 21, 0, 0), StudentId = 1000 },
+                    new Schedule() {ScheduleTime = new DateTime(2020, 9, 23, 19, 0, 0), StudentId = 1000 }
+                };
+
+                await context.AddRangeAsync(schedules);
+
+                await context.SaveChangesAsync();
+
+            }
+
+
             // 테이블 데이터 삭제 
             //context.Communitys.RemoveRange(context.Communitys);
             //await context.SaveChangesAsync();
@@ -111,6 +134,7 @@ namespace App.Data
 }
 
 /*
-add-migration RubySoundV4
+enable-migrations
+add-migration RubySoundV8
 update-database
  */

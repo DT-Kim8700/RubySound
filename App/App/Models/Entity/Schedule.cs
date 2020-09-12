@@ -9,6 +9,13 @@ namespace App.Models
 {
     public class Schedule
     {
+        public enum Status
+        {
+            Waiting,
+            Completion
+        }
+
+
         [Key]
         public int ScheduleId { get; set; }
 
@@ -17,6 +24,9 @@ namespace App.Models
 
         [Required, Column(TypeName = "int")]
         public int StudentId { get; set; }
+
+        [Required, StringLength(50), Column(TypeName = "nvarchar(50)")]
+        public Status LessonStatus { get; set; }
 
         public virtual Student Student { get; set; }
     }

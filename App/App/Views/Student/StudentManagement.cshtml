@@ -13,7 +13,7 @@
             <th class="align-middle text-center">핸드폰 번호</th>
             <th class="align-middle text-center">수강 악기</th>
             <th class="align-middle text-center">담당 선생님</th>
-            <th></th>
+            <th colspan="2"></th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +25,9 @@
             <td class="align-middle text-center">@m.Student.PhoneNumber</td>
             <td class="align-middle text-center">@m.Student.Ins</td>
             <td class="align-middle text-center">@m.Teacher.Name</td>
+            <td class="align-middle text-center">
+                <a class="btn btn-info" asp-controller="schedule" asp-action="StudentSchedule" asp-route-id="@m.Student.StudentId">레슨 조회</a>
+            </td>
             <td class="align-middle text-center">
                 <a class="btn btn-info" asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@m.Student.StudentId">Delete</a>
             </td>

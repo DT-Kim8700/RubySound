@@ -34,7 +34,7 @@
                         <a asp-controller="Home" asp-action="Description" asp-route-id="@c.Community.CommunityId">@c.Community.Title</a>
                     </td>
                     <td class="align-middle text-center">@c.AccountUser.Name</td>
-                    <td class="align-middle text-center">@c.Community.EnrollTime.ToShortDateString()</td>
+                    <td class="align-middle text-center">@c.Community.EnrollTime.ToString("yyyy-MM-dd HH:mm")</td>
                 </tr>
             }
         </tbody>

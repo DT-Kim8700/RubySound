@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using App.Models;
 using App.Models.ViewModels;
 using App.Models.Account;
 using Microsoft.AspNetCore.Identity;
 using App.Repository;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Authorization;
-using System.Web.Providers.Entities;
-using System.Security.Claims;
-using App.Models.Entity;
 
 namespace App.Controllers
 {
