@@ -29,14 +29,17 @@ namespace App.Repository
 
             List<StudentListViewModel> studentViewModel = new List<StudentListViewModel>();
 
-            foreach (var i in query)
+            if (query.Any())
             {
-                studentViewModel.Add(new StudentListViewModel
+                foreach (var i in query)
                 {
-                    Student = i.student,
-                    Teacher = i.teacher
-                });
+                    studentViewModel.Add(new StudentListViewModel
+                    {
+                        Student = i.student,
+                        Teacher = i.teacher
+                    });
 
+                }
             }
 
             return studentViewModel;

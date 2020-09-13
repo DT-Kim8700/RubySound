@@ -30,7 +30,7 @@
                     <td class="align-middle text-center">
                         @if (m.Schedule.LessonStatus == Schedule.Status.Waiting)
                         {
-                            <a class="btn btn-info" asp-controller="Schedule" asp-action="ChangeSchedule" asp-route-id="@m.Schedule.ScheduleId">변경</a>
+                            <a class="btn btn-info" asp-controller="Schedule" asp-action="ChangeSchedule" asp-route-id="@m.Schedule.StudentId">변경</a>
                             <!-- 개인 스케쥴 페이지로 가서 조정한다. -->
                         }
                         else

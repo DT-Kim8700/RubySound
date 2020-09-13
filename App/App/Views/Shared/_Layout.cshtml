@@ -20,10 +20,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="TeacherIntroduce">선생님 소개</a>
+                            <a class="nav-link text-dark mr-2" asp-area="" asp-controller="Teacher" asp-action="TeacherIntroduce">선생님 소개</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Community">커뮤니티</a>
+                            <a class="nav-link text-dark mr-2" asp-area="" asp-controller="Home" asp-action="Community">커뮤니티</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
@@ -36,13 +36,13 @@
                             @if (User.Identity.IsAuthenticated && User.IsInRole("manager"))       // 로그인에 성공하고 그 계정에 할당된 Role이 Admin일 때
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="TeacherManagement">선생님 관리</a>
+                                    <a class="nav-link text-dark mr-2" asp-area="" asp-controller="Teacher" asp-action="TeacherManagement">선생님 관리</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="StudentManagement">학생 관리</a>
+                                    <a class="nav-link text-dark mr-2" asp-area="" asp-controller="Student" asp-action="StudentManagement">학생 관리</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="ScheduleList">스케쥴 확인</a>
+                                    <a class="nav-link text-dark mr-2" asp-area="" asp-controller="Schedule" asp-action="ScheduleList">스케쥴 확인</a>
                                 </li>
                             }
 

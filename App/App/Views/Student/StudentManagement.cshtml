@@ -26,10 +26,10 @@
             <td class="align-middle text-center">@m.Student.Ins</td>
             <td class="align-middle text-center">@m.Teacher.Name</td>
             <td class="align-middle text-center">
-                <a class="btn btn-info" asp-controller="schedule" asp-action="StudentSchedule" asp-route-id="@m.Student.StudentId">레슨 조회</a>
+                <a class="btn btn-info" asp-controller="schedule" asp-action="ChangeSchedule" asp-route-id="@m.Student.StudentId">레슨 조회</a>
             </td>
             <td class="align-middle text-center">
-                <a class="btn btn-info" asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@m.Student.StudentId">Delete</a>
+                <a class="btn btn-danger" asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@m.Student.StudentId">Delete</a>
             </td>
         </tr>
         }
