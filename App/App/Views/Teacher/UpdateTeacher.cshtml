@@ -1,0 +1,57 @@
+﻿@model TeacherViewModel
+
+@{
+    ViewData["Title"] = "선생님 정보 변경";
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("manager"))
+{
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <h1 class="text-center">@ViewData["Title"]</h1>
+            <hr />
+            <form method="post" class="form-horizontal">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" value="@Model.TeacherId" asp-for="TeacherId" class="form-control" />
+                <div class="form-group">
+                    <label asp-for="Name">이름</label>
+                    <input value="@Model.Name" asp-for="Name" class="form-control" readonly />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Birthday">생년월일</label>
+                    <input value="@Model.Birthday" asp-for="Birthday" class="form-control" readonly />
+                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Gender">성별</label>
+                    <input value="@Model.Gender" asp-for="Gender" class="form-control" readonly />
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input value="@Model.Email" asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber">PhoneNumber</label>
+                    <input value="@Model.PhoneNumber" asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address">주소</label>
+                    <input value="@Model.Address" asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Ins">악기</label>
+                    <input value="@Model.Ins" asp-for="Ins" class="form-control" readonly/>
+                    <span asp-validation-for="Ins" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-info">변경</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}

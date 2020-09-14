@@ -48,16 +48,69 @@ namespace App.Repository
             return students;
         }
 
+        // 선생님 추가
+        public bool Add(TeacherViewModel model)
+        {
+            Teacher teacher = new Teacher
+            {
+                Name = model.Name,
+                Birthday = model.Birthday,
+                Gender = model.Gender,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                Address = model.Address,
+                Ins = model.Ins,
+            };
+            
+            context.Teachers.Add(teacher);
 
+            if(teacher != null)
+            {
+                return true;
+            }
 
-        // 선생님 프로필 조회
+            return false;
+        }
 
-        // 선생님 정보 등록
+        // 선생님 프로필 수정
+        public TeacherViewModel GetOneTeacher(int teacherId)
+        {
+            Teacher teacher = context.Teachers.Where(t => t.TeacherId == teacherId).FirstOrDefault();
 
-        // 선생님 스케쥴 확인
+            TeacherViewModel teacherView = new TeacherViewModel
+            {
+                TeacherId = teacher.TeacherId,
+                Name = teacher.Name,
+                Birthday = teacher.Birthday,
+                Gender = teacher.Gender,
+                Email = teacher.Email,
+                PhoneNumber = teacher.PhoneNumber,
+                Address = teacher.Address,
+                Ins = teacher.Ins
+            };
 
+            return teacherView;
+        }
 
+        public bool Update(TeacherViewModel model)
+        {
+            Teacher teacher = context.Teachers.Where(t => t.TeacherId == model.TeacherId).FirstOrDefault();
 
+            if (teacher != null)
+            {
+                teacher.Name = model.Name;
+                teacher.Birthday = model.Birthday;
+                teacher.Gender = model.Gender;
+                teacher.Email = model.Email;
+                teacher.PhoneNumber = model.PhoneNumber;
+                teacher.Address = model.Address;
+                teacher.Ins = model.Ins;
+
+                return true;
+            }
+
+            return false;
+        }
 
 
         public void Save()

@@ -6,22 +6,25 @@
 
 @if (User.Identity.IsAuthenticated && User.IsInRole("manager"))
 {
+<div class="text-center">
     <h2>선생님 목록</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th class="align-middle text-center">이름</th>
-            <th class="align-middle text-center">Email</th>
-            <th class="align-middle text-center">핸드폰 번호</th>
-            <th class="align-middle text-center">주소</th>
-            <th class="align-middle text-center">담당 악기</th>
-            <th class="align-middle text-center"></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Teacher t in Model.Teachers)
-        {
+    <span class="nav-link pull-right">
+        <a class="btn btn-info" asp-controller="Teacher" asp-action="AddTeacher">선생님 추가</a>
+    </span>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="align-middle text-center">이름</th>
+                <th class="align-middle text-center">Email</th>
+                <th class="align-middle text-center">핸드폰 번호</th>
+                <th class="align-middle text-center">주소</th>
+                <th class="align-middle text-center">전공 악기</th>
+                <th class="align-middle text-center" colspan="3"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Teacher t in Model.Teachers)
+            {
             <tr>
                 <td class="align-middle text-center">@t.Name</td>
                 <td class="align-middle text-center">@t.Email</td>
@@ -29,10 +32,17 @@
                 <td class="align-middle text-center">@t.Address</td>
                 <td class="align-middle text-center">@t.Ins</td>
                 <td class="align-middle text-center">
-                    <a class="btn btn-info" asp-controller="Teacher" asp-action="DeleteTeacher" asp-route-id="@t.TeacherId">Delete</a>
+                    <a class="btn btn-info" asp-controller="schedule" asp-action="TeacherSchedule" asp-route-id="@t.TeacherId">레슨 조회</a>
+                </td>
+                <td class="align-middle text-center">
+                    <a class="btn btn-info" asp-controller="Teacher" asp-action="UpdateTeacher" asp-route-id="@t.TeacherId">정보 변경</a>
+                </td>
+                <td class="align-middle text-center">
+                    <a class="btn btn-danger" asp-controller="Teacher" asp-action="DeleteTeacher" asp-route-id="@t.TeacherId">Delete</a>
                 </td>
             </tr>
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
+</div>
 }

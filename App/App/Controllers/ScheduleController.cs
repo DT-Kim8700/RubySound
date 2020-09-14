@@ -51,7 +51,7 @@ namespace App.Controllers
             }
             else    // 스케쥴 추가
             {
-                scheduleRepository.AddSchedule(model);
+                scheduleRepository.Add(model);
             }
 
             scheduleRepository.Save();
@@ -73,7 +73,12 @@ namespace App.Controllers
             return View(viewModel);
         }
 
+        // 선생님 스케쥴 조회
+        public IActionResult TeacherSchedule(int id)        // Teacher.Id
+        {
+            List<ScheduleListViewModel> viewModels = scheduleRepository.GetTeacherSchedules(id);
 
-
+            return View(viewModels);
+        }
     }
 }

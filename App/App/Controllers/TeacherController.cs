@@ -62,7 +62,56 @@ namespace App.Controllers
 
 
         // 선생님 추가
+        public IActionResult AddTeacher()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddTeacher(TeacherViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool success = teacherRepository.Add(model);
+
+                if (success)
+                {
+                    teacherRepository.Save();
+                    return RedirectToAction("TeacherManagement");
+                }
+
+                ModelState.AddModelError("", "등록 실패");
+
+            }
+
+            return View(model);
+        }
+
 
         // 선생님 정보 변경
+        public IActionResult UpdateTeacher(int id)      // TeacherId
+        {
+            TeacherViewModel viewModel = teacherRepository.GetOneTeacher(id);
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateTeacher(TeacherViewModel model)
+        {
+            bool result = teacherRepository.Update(model);
+
+            if (result)
+            {
+                teacherRepository.Save();
+                return RedirectToAction("TeacherManagement");
+            }
+
+            return RedirectToAction("UpdateTeacher");
+        }
+
     }
 }

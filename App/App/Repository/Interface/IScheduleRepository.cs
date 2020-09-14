@@ -5,10 +5,11 @@ namespace App.Repository
 {
     public interface IScheduleRepository
     {
-        void AddSchedule(ChangeScheduleViewModel model);
+        void Add(ChangeScheduleViewModel model);
         void Delete(int? scheduleId);
         IEnumerable<ScheduleListViewModel> GetAllSchedules();
         ChangeScheduleViewModel GetOneSchedules(int? studentId);
+        List<ScheduleListViewModel> GetTeacherSchedules(int teacherId);
         ChangeScheduleViewModel MySchedule(string email);
         void Save();
     }

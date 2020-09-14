@@ -45,7 +45,7 @@ namespace App.Controllers
         // 학생 추가
         public IActionResult AddStudent()
         {
-            StudentAddViewModel viewModel = new StudentAddViewModel()
+            StudentViewModel viewModel = new StudentViewModel()
             {
                 Teachers = studentRepository.GetTeachers()
             };
@@ -55,25 +55,48 @@ namespace App.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddStudent(StudentAddViewModel model)
+        public IActionResult AddStudent(StudentViewModel model)
         {
-
-            bool success = studentRepository.AddStudent(model);
-
-            if (success)
+            if (ModelState.IsValid)
             {
-                studentRepository.Save();
-                return RedirectToAction("StudentManagement");
-            }
-            else
-            {
-                return RedirectToAction("AddStudent");
+                bool success = studentRepository.Add(model);
+
+                if (success)
+                {
+                    studentRepository.Save();
+                    return RedirectToAction("StudentManagement");
+                }
+
+                ModelState.AddModelError("", "등록 실패");
+
             }
 
-            
+            return View(model);
+
         }
 
 
         // 학생 정보 변경
-    }
+        public IActionResult UpdateStudent(int id)      // StudentId
+        {
+            StudentViewModel viewModel = studentRepository.GetOneStudent(id);
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateStudent(StudentViewModel model)
+        {
+            bool result = studentRepository.Update(model);
+
+            if (result)
+            {
+                studentRepository.Save();
+                return RedirectToAction("StudentManagement");
+            }
+
+            return RedirectToAction("UpdateStudent");
+        }
+    } 
 }

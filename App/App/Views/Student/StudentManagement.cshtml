@@ -25,19 +25,22 @@
             <tbody>
                 @foreach (StudentListViewModel m in Model)
                 {
-                    <tr>
-                        <td class="align-middle text-center">@m.Student.Name</td>
-                        <td class="align-middle text-center">@m.Student.Email</td>
-                        <td class="align-middle text-center">@m.Student.PhoneNumber</td>
-                        <td class="align-middle text-center">@m.Student.Ins</td>
-                        <td class="align-middle text-center">@m.Teacher.Name</td>
-                        <td class="align-middle text-center">
-                            <a class="btn btn-info" asp-controller="schedule" asp-action="ChangeSchedule" asp-route-id="@m.Student.StudentId">레슨 조회</a>
-                        </td>
-                        <td class="align-middle text-center">
-                            <a class="btn btn-danger" asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@m.Student.StudentId">Delete</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="align-middle text-center">@m.Student.Name</td>
+                    <td class="align-middle text-center">@m.Student.Email</td>
+                    <td class="align-middle text-center">@m.Student.PhoneNumber</td>
+                    <td class="align-middle text-center">@m.Student.Ins</td>
+                    <td class="align-middle text-center">@m.Teacher.Name</td>
+                    <td class="align-middle text-center">
+                        <a class="btn btn-info" asp-controller="schedule" asp-action="ChangeSchedule" asp-route-id="@m.Student.StudentId">레슨 조회</a>
+                    </td>
+                    <td class="align-middle text-center">
+                        <a class="btn btn-info" asp-controller="Student" asp-action="UpdateStudent" asp-route-id="@m.Student.StudentId">정보 변경</a>
+                    </td>
+                    <td class="align-middle text-center">
+                        <a class="btn btn-danger" asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@m.Student.StudentId">Delete</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

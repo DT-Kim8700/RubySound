@@ -127,7 +127,7 @@ namespace App.Repository
         }
 
         // 스케쥴 추가
-        public void AddSchedule(ChangeScheduleViewModel model)
+        public void Add(ChangeScheduleViewModel model)
         {
             Schedule schedule = new Schedule
             {
@@ -139,11 +139,38 @@ namespace App.Repository
             context.Schedules.Add(schedule);
         }
 
+        // 선생님 전체 스케쥴 가져오기
+        public List<ScheduleListViewModel> GetTeacherSchedules(int teacherId)
+        {
+            var query = from schedule in context.Schedules
+                        from teacher in context.Teachers
+                        join student in context.Students
+                        on new { teacher.TeacherId, schedule.StudentId } equals new { student.TeacherId, student.StudentId }
+                        where student.TeacherId == teacherId
+                        orderby schedule.ScheduleTime descending
+                        select new { student, teacher, schedule };
 
+            List<ScheduleListViewModel> scheduleListViewModels = new List<ScheduleListViewModel>();
 
+            if (query.Any())
+            {
+                foreach (var i in query)
+                {
+                    scheduleListViewModels.Add(new ScheduleListViewModel
+                    {
+                        Student = i.student,
+                        Teacher = i.teacher,
+                        Schedule = i.schedule
+                    });
 
+                }
 
+                return scheduleListViewModels;
+            }
 
+            return scheduleListViewModels;
+
+        }
 
 
         public void Save()
