@@ -54,10 +54,39 @@ namespace App.Repository
             context.Students.Remove(student);
         }
 
-
-        // 수강생 검색 조회
+        public IEnumerable<Teacher> GetTeachers()
+        {
+            return context.Teachers.ToList();
+        }
 
         // 수강생 등록
+        public bool AddStudent(StudentAddViewModel model)
+        {
+            Student student = new Student
+            {
+                Name = model.Name,
+                Birthday = model.Birthday,
+                Gender = model.Gender,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                Address = model.Address,
+                Ins = model.Ins,
+                TeacherId = model.TeacherId
+            };
+
+            Student findStudent = context.Students.Where(s => s.Email == student.Email).FirstOrDefault();
+
+            if(findStudent == null)
+            {
+                context.Students.Add(student);
+                return true;
+            }
+
+            return false;
+        }
+
+
+        // 수강생 검색 조회
 
         // 수강생 스케쥴 확인
 

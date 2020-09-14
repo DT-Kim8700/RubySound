@@ -4,7 +4,9 @@
     ViewData["Title"] = "선생님 관리";
 }
 
-<h2>선생님 목록</h2>
+@if (User.Identity.IsAuthenticated && User.IsInRole("manager"))
+{
+    <h2>선생님 목록</h2>
 <table class="table">
     <thead>
         <tr>
@@ -20,16 +22,17 @@
     <tbody>
         @foreach (Teacher t in Model.Teachers)
         {
-        <tr>
-            <td class="align-middle text-center">@t.Name</td>
-            <td class="align-middle text-center">@t.Email</td>
-            <td class="align-middle text-center">@t.PhoneNumber</td>
-            <td class="align-middle text-center">@t.Address</td>
-            <td class="align-middle text-center">@t.Ins</td>
-            <td class="align-middle text-center">
-                <a class="btn btn-info" asp-controller="Teacher" asp-action="DeleteTeacher" asp-route-id="@t.TeacherId">Delete</a>
-            </td>
-        </tr>
+            <tr>
+                <td class="align-middle text-center">@t.Name</td>
+                <td class="align-middle text-center">@t.Email</td>
+                <td class="align-middle text-center">@t.PhoneNumber</td>
+                <td class="align-middle text-center">@t.Address</td>
+                <td class="align-middle text-center">@t.Ins</td>
+                <td class="align-middle text-center">
+                    <a class="btn btn-info" asp-controller="Teacher" asp-action="DeleteTeacher" asp-route-id="@t.TeacherId">Delete</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+}

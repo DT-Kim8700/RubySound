@@ -65,6 +65,11 @@ namespace App.Controllers
         {
             ChangeScheduleViewModel viewModel = scheduleRepository.MySchedule(id);
 
+            if(viewModel == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View(viewModel);
         }
 

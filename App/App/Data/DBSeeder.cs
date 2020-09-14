@@ -135,6 +135,6 @@ namespace App.Data
 
 /*
 enable-migrations
-add-migration RubySoundV8
-update-database
+EntityFrameworkCore\add-migration RubySoundV10
+EntityFrameworkCore\update-database
  */

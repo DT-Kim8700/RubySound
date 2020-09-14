@@ -2,7 +2,6 @@
 using App.Models.Account;
 using App.Models.Entity;
 using App.Models.ViewModels;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

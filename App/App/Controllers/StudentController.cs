@@ -43,6 +43,36 @@ namespace App.Controllers
         }
 
         // 학생 추가
+        public IActionResult AddStudent()
+        {
+            StudentAddViewModel viewModel = new StudentAddViewModel()
+            {
+                Teachers = studentRepository.GetTeachers()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddStudent(StudentAddViewModel model)
+        {
+
+            bool success = studentRepository.AddStudent(model);
+
+            if (success)
+            {
+                studentRepository.Save();
+                return RedirectToAction("StudentManagement");
+            }
+            else
+            {
+                return RedirectToAction("AddStudent");
+            }
+
+            
+        }
+
 
         // 학생 정보 변경
     }

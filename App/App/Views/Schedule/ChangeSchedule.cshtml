@@ -7,100 +7,104 @@
 <!-- 회원 개인 스케쥴 조정 -->
 <br />
 <br />
-<h4>@Model.Student.Name 회원님 스케쥴</h4>
-<hr />
-<p>연락처 : @Model.Student.PhoneNumber</p>
-@if (Model.Teacher != null)
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("manager"))
 {
-    <p>담당 선생님 : @Model.Teacher.Name</p>
-    <p>악기 : @Model.Student.Ins</p>
-}
-else
-{
-    <p>담당 선생님 : -</p>
-    <p>악기 : -</p>
-}
+    <h4>@Model.Student.Name 회원님 스케쥴</h4>
+    <hr />
+    <p>연락처 : @Model.Student.PhoneNumber</p>
+    @if (Model.Teacher != null)
+    {
+        <p>담당 선생님 : @Model.Teacher.Name</p>
+        <p>악기 : @Model.Student.Ins</p>
+    }
+    else
+    {
+        <p>담당 선생님 : -</p>
+        <p>악기 : -</p>
+    }
 
-<br />
-<div class="text-center">
-    <form method="post" class="row form-horizontal ">
-        <div class="form-group col-md-2 mr-1">
-            <select class="form-control" asp-for="ScheduleYear" required>
-                <option>년</option>
-                <option value="@DateTime.Now.ToString("yyyy")">@DateTime.Now.ToString("yyyy")</option>
-                <option value="@(int.Parse(DateTime.Now.ToString("yyyy")) + 1)">@(int.Parse(DateTime.Now.ToString("yyyy")) + 1)</option>
-            </select>
-        </div>
-        <div class="form-group col-md-1 mr-1">
-            <select class="form-control" asp-for="ScheduleMonth" required>
-                <option>월</option>
-                @for (int i = 1; i <= 12; i++)
-                {
-                    <option value="@i">@i</option>
-                }
-            </select>
-        </div>
-        <div class="form-group col-md-1 mr-1">
-            <select class="form-control" asp-for="ScheduleDay" required>
-                <option>일</option>
-                @for (int i = 1; i <= 31; i++)
-                {
-                    <option value="@i">@i</option>
-                }
-            </select>
-        </div>
-        <div class="form-group col-md-1">
-            <select class="form-control" asp-for="ScheduleHour" required>
-                <option>시</option>
-                @for (int i = 12; i <= 21; i++)
-                {
-                    <option value="@i">@i</option>
-                }
-            </select>
-        </div>
-        <input type="hidden" value="@Model.Student.StudentId" asp-for="StudentId" />
-
-        <div class="form-group col-md-2">
-            <button type="submit" class="btn btn-info">추가</button>
-        </div>
-    </form>
-
-    <div class="row">
-        <div class="col-md-8">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="align-middle text-center">레슨 시간</th>
-                        <th class="align-middle text-center">레슨 상태</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.Student.Schedules != null)
+    <br />
+    <div class="text-center">
+        <form method="post" class="row form-horizontal ">
+            <div class="form-group col-md-2 mr-1">
+                <select class="form-control" asp-for="ScheduleYear" required>
+                    <option>년</option>
+                    <option value="@DateTime.Now.ToString("yyyy")">@DateTime.Now.ToString("yyyy")</option>
+                    <option value="@(int.Parse(DateTime.Now.ToString("yyyy")) + 1)">@(int.Parse(DateTime.Now.ToString("yyyy")) + 1)</option>
+                </select>
+            </div>
+            <div class="form-group col-md-1 mr-1">
+                <select class="form-control" asp-for="ScheduleMonth" required>
+                    <option>월</option>
+                    @for (int i = 1; i <= 12; i++)
                     {
-                        foreach (Schedule m in Model.Student.Schedules)
-                        {
-                            <tr>
-                                <td class="align-middle text-center">@m.ScheduleTime.ToString("MM-dd  오후 hh시")</td>
-                                <td class="align-middle text-center">
-                                    @if (m.LessonStatus == Schedule.Status.Waiting)
-                                    {
-                                        <form method="post" class="form-horizontal">
-                                            <input type="hidden" value="@m.ScheduleId" asp-for="ScheduleId" />
-                                            <button type="submit" class="btn btn-info">삭제</button>
-                                        </form>
-                                    }
-                                    else
-                                    {
-                                        <div class="btn btn-danger">완료</div>
-                                    }
-
-                                </td>
-                            </tr>
-                        }
+                        <option value="@i">@i</option>
                     }
+                </select>
+            </div>
+            <div class="form-group col-md-1 mr-1">
+                <select class="form-control" asp-for="ScheduleDay" required>
+                    <option>일</option>
+                    @for (int i = 1; i <= 31; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <select class="form-control" asp-for="ScheduleHour" required>
+                    <option>시</option>
+                    @for (int i = 12; i <= 21; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <input type="hidden" value="@Model.Student.StudentId" asp-for="StudentId" />
 
-                </tbody>
-            </table>
+            <div class="form-group col-md-2">
+                <button type="submit" class="btn btn-info">추가</button>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="align-middle text-center">레슨 시간</th>
+                            <th class="align-middle text-center">레슨 상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Student.Schedules != null)
+                        {
+                            foreach (Schedule m in Model.Student.Schedules)
+                            {
+                                <tr>
+                                    <td class="align-middle text-center">@m.ScheduleTime.ToString("MM-dd  오후 hh시")</td>
+                                    <td class="align-middle text-center">
+                                        @if (m.LessonStatus == Schedule.Status.Waiting)
+                                        {
+                                            <form method="post" class="form-horizontal">
+                                                <input type="hidden" value="@m.ScheduleId" asp-for="ScheduleId" />
+                                                <button type="submit" class="btn btn-info">삭제</button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <div class="btn btn-danger">완료</div>
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+}

@@ -35,7 +35,7 @@ namespace App.Models
         [Required, StringLength(50), Column(TypeName = "nvarchar(50)")]
         public string Gender { get; set; }
 
-        [Required, StringLength(50), Column(TypeName = "nvarchar(50)")]
+        [Index(IsUnique = true), Required, StringLength(50), Column(TypeName = "nvarchar(50)")]
         public string Email { get; set; }
 
         [Required, StringLength(50), Column(TypeName = "nvarchar(50)")]
@@ -60,3 +60,6 @@ namespace App.Models
         public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }
+
+
+// Index(IsUnique = true): 유니크 설정. 인덱스도 같이 부여된다.
