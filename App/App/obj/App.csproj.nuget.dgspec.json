@@ -46,7 +46,15 @@
               "target": "Package",
               "version": "[6.4.4, )"
             },
+            "Microsoft.AspNet.Identity.Core": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.8, )"
             },

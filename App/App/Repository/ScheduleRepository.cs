@@ -47,7 +47,7 @@ namespace App.Repository
                                             .ThenByDescending(s => s.Schedule.ScheduleTime);
             }
 
-            return scheduleListViewModel
+            return scheduleListViewModel;
         }
 
         // 개인회원 스케쥴 조회
@@ -84,6 +84,36 @@ namespace App.Repository
                     Student = context.Students.Where(s => s.StudentId == studentId).FirstOrDefault()
                 };
             }
+            return changeScheduleViewModel;
+        }
+
+        public ChangeScheduleViewModel MySchedule(string email)    // User.Identity.Name => Email
+        {
+            var query = from schedule in context.Schedules
+                        from teacher in context.Teachers
+                        join student in context.Students
+                        on new { teacher.TeacherId, schedule.StudentId } equals new { student.TeacherId, student.StudentId }
+                        where student.Email == email
+                        orderby schedule.ScheduleTime descending
+                        select new { student, teacher, schedule };
+
+            ChangeScheduleViewModel changeScheduleViewModel = null;
+
+            if (query.Any())
+            {
+                changeScheduleViewModel = new ChangeScheduleViewModel()
+                {
+                    Teacher = query.FirstOrDefault().teacher,
+                    Student = query.FirstOrDefault().student,
+                    Schedules = new List<Schedule>()
+                };
+
+                foreach (var s in query)
+                {
+                    changeScheduleViewModel.Schedules.Add(s.schedule);
+                }
+            }
+
             return changeScheduleViewModel;
         }
 

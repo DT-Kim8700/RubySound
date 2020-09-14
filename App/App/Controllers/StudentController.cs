@@ -42,6 +42,8 @@ namespace App.Controllers
             return RedirectToAction("StudentManagement");
         }
 
+        // 학생 추가
+
         // 학생 정보 변경
     }
 }

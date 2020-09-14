@@ -165,6 +165,9 @@ C:\Users\hiper\Desktop\C#\RubySound\App\App\bin\Debug\netcoreapp3.1\ru\Microsoft
 C:\Users\hiper\Desktop\C#\RubySound\App\App\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\hiper\Desktop\C#\RubySound\App\App\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\hiper\Desktop\C#\RubySound\App\App\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\Schedule\ChangeSchedule.cshtml.g.cs
+C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\Schedule\MySchedule.cshtml.g.cs
+C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\Home\UpdateUser.cshtml.g.cs
+C:\Users\hiper\Desktop\C#\RubySound\App\App\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.Core.dll
 C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\App.csproj.CoreCompileInputs.cache
 C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\App.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\hiper\Desktop\C#\RubySound\App\App\obj\Debug\netcoreapp3.1\Razor\Views\Schedule\ChangeSchedule.cshtml.g.cs

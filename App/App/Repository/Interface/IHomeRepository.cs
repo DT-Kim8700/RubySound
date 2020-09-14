@@ -9,6 +9,8 @@ namespace App.Repository
         void DeleteCommunity(int communityId);
         IEnumerable<CommunityListViewModel> GetAllCommunitis(int num);
         CommunityListViewModel GetCommunity(int CommunityId);
+        void Save();
+        AccountUser UpdateUser(AccountUserViewModel model);
         void UploadCommunity(CommunityCreateViewModel model);
     }
 }

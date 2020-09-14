@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using App.Models.ViewModels;
 using App.Models.Account;
-using Microsoft.AspNetCore.Identity;
 using App.Repository;
+using Microsoft.AspNetCore.Identity;
 
 namespace App.Controllers
 {
@@ -135,6 +135,7 @@ namespace App.Controllers
         public IActionResult CreateCommunity(CommunityCreateViewModel model)     // id에 email 값이 들어온다.
         {
             homeRepository.UploadCommunity(model);
+            homeRepository.Save();
 
             return RedirectToAction("Community");
 
@@ -144,10 +145,53 @@ namespace App.Controllers
         public IActionResult DeleteCommunity(int id)
         {
             homeRepository.DeleteCommunity(id);
+            homeRepository.Save();
 
             return RedirectToAction("Community");
         }
 
+        // 유저 정보 변경 -  update
+        public IActionResult UpdateUser(string id)
+        {
+            AccountUserViewModel viewModel = new AccountUserViewModel()
+            {
+                Email = id
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateUser(AccountUserViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                AccountUser accountUser = homeRepository.UpdateUser(model);
+
+                if (accountUser != null)
+                {
+                    var result = await userManager.ChangePasswordAsync(accountUser, model.BeforePassword, model.Password);
+
+                    if (result.Succeeded)       // 비밀번호 변경 성공시 DB변경까지 save한다.
+                    {
+                        homeRepository.Save();
+                        return RedirectToAction("Index", "Home");   // 변경 성공 시
+                    }
+
+                    // 비밀번호 변경에 실패할 경우 DB변경 내용을 commit 하지 않는다.
+                    ModelState.AddModelError("", "비밀번호는 8자이상, 영문 대소문자, 숫자,\n특수문자를 모두 포함해야 합니다.");
+
+                }
+
+            }
+
+            return View(model);
+        }
+
     }
 }
+
+
 

@@ -2,6 +2,8 @@
 using App.Models.Account;
 using App.Models.Entity;
 using App.Models.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,8 +95,6 @@ namespace App.Repository
             };
 
             context.Communitys.Add(community);
-
-            context.SaveChanges();
         }
 
         // 커뮤니티 글 삭제
@@ -103,7 +103,25 @@ namespace App.Repository
             Community community = context.Communitys.Where(c => c.CommunityId == communityId).FirstOrDefault();
 
             context.Communitys.Remove(community);
+        }
 
+        // 유저 정보 수정
+        public AccountUser UpdateUser(AccountUserViewModel model)
+        {
+           AccountUser accountUser = context.AccountUsers.Where(a => a.UserName == model.Email).FirstOrDefault();
+            
+           if(accountUser != null)
+           {
+                accountUser.Email = model.Email;
+                accountUser.Address = model.Address;
+                accountUser.PhoneNumber = model.PhoneNumber;
+           }
+
+            return accountUser;
+        }
+
+        public void Save()
+        {
             context.SaveChanges();
         }
     }

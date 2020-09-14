@@ -9,6 +9,7 @@ namespace App.Repository
         void Delete(int? scheduleId);
         IEnumerable<ScheduleListViewModel> GetAllSchedules();
         ChangeScheduleViewModel GetOneSchedules(int? studentId);
+        ChangeScheduleViewModel MySchedule(string email);
         void Save();
     }
 }

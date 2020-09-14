@@ -39,7 +39,6 @@ namespace App.Controllers
             
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         // 스케쥴 추가
@@ -52,8 +51,6 @@ namespace App.Controllers
             }
             else    // 스케쥴 추가
             {
-                Student student = model.Student;
-
                 scheduleRepository.AddSchedule(model);
             }
 
@@ -64,27 +61,13 @@ namespace App.Controllers
 
 
         // 스케쥴 개인 조회
-        public IActionResult StudentSchedule(int id)       // Student.StudentId
+        public IActionResult MySchedule(string id)       // User.Identity.Name => Email
         {
-            return View();
+            ChangeScheduleViewModel viewModel = scheduleRepository.MySchedule(id);
+
+            return View(viewModel);
         }
 
-
-
-        // 스케쥴 취소
-        //public IActionResult DeleteSchedule(int? id)     // ScheduleId
-        //{
-
-        //    if (id == null)
-        //    {
-        //        return RedirectToAction("changeSchedule");
-        //    }
-
-        //    scheduleRepository.Delete(id);
-        //    scheduleRepository.Save();
-
-        //    return RedirectToAction("changeSchedule");
-        //}
 
 
     }

@@ -35,7 +35,6 @@ namespace App.Controllers
             return View(viewModel);
 
         }
-
         
 
         // 선생님 삭제
@@ -60,5 +59,10 @@ namespace App.Controllers
 
             return RedirectToAction("index", "Home");
         }
+
+
+        // 선생님 추가
+
+        // 선생님 정보 변경
     }
 }
