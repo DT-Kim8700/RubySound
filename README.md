@@ -5,7 +5,7 @@
 ## 활용 스킬
  - C# , ASP.NET Core
  
-### 테이블 구성
+### ERD 구성
 ![ERD](https://user-images.githubusercontent.com/61723676/93174287-ada2ab80-f768-11ea-9f5d-6a5dd17361f3.png)
 
 ### 구현 기능
