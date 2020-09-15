@@ -1,4 +1,7 @@
 # RubySound
-음악학원 웹사이트 제작 프로젝트
+- ASP.NET Core를 활용한 음악학원 관리 웹서버
 
-ASP.NET Core를 활용한 웹사이트 제작
+
+## 활용 스킬
+ - C# , ASP.NET Core
+ 
