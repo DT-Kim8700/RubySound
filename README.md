@@ -14,3 +14,6 @@
  
 ### 1. 테이블 구성
 ![ERD](https://user-images.githubusercontent.com/61723676/93174287-ada2ab80-f768-11ea-9f5d-6a5dd17361f3.png)
+
+
+### 2. 웹 사이트 계정 등록
