@@ -13,4 +13,4 @@
  
  
 ### 1. 테이블 구성
-![ERD](https://user-images.githubusercontent.com/61723676/93173601-af1fa400-f767-11ea-81c9-48b8c601fb65.png)
+![ERD](https://user-images.githubusercontent.com/61723676/93174287-ada2ab80-f768-11ea-9f5d-6a5dd17361f3.png)
